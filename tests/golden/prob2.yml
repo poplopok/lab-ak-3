@@ -1,0 +1,195 @@
+in_source: |-
+  _start:     add r1, r0, 2
+            add r2, r0, 8
+            add r4, r0, 10
+            add r5, r0, 4000000
+  loop:       mul r3, r2, 4
+              add r3, r3, r1
+              bge r3, r5, end
+
+              add r4, r4, r3
+              add r1, r0, r2
+              add r2, r0, r3
+              jmp loop
+  end:        out r4, 0
+              hlt
+in_stdin: foo
+out_log: |
+  DEBUG    root:machine.py:278 TICK:    0 PC:    0 AR:    0 Z_FLAG: 0 N_FLAG: 0  	None                                     	R1:    0 R2:   31 R3:   31 R4:    0 R5:    0 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:    4 PC:    1 AR:    0 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'add', 'args': [R1, R0, 2]}   	R1:    2 R2:   31 R3:   31 R4:    0 R5:    0 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:    8 PC:    2 AR:    1 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'add', 'args': [R2, R0, 8]}   	R1:    2 R2:    8 R3:   31 R4:    0 R5:    0 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:   12 PC:    3 AR:    2 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'add', 'args': [R4, R0, 10]}  	R1:    2 R2:    8 R3:   31 R4:   10 R5:    0 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:   16 PC:    4 AR:    3 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'add', 'args': [R5, R0, 4000000]} 	R1:    2 R2:    8 R3:   31 R4:   10 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:   20 PC:    5 AR:    4 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'mul', 'args': [R3, R2, 4]}   	R1:    2 R2:    8 R3:   32 R4:   10 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:   24 PC:    6 AR:    5 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'add', 'args': [R3, R3, R1]}  	R1:    2 R2:    8 R3:   34 R4:   10 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:   28 PC:    7 AR:    6 Z_FLAG: 0 N_FLAG: 0  	{'opcode': 'bge', 'args': [R3, R5, 11]}  	R1:    2 R2:    8 R3:   34 R4:   10 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:   32 PC:    8 AR:    7 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'add', 'args': [R4, R4, R3]}  	R1:    2 R2:    8 R3:   34 R4:   44 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:   36 PC:    9 AR:    8 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'add', 'args': [R1, R0, R2]}  	R1:    8 R2:    8 R3:   34 R4:   44 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:   40 PC:   10 AR:    9 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'add', 'args': [R2, R0, R3]}  	R1:    8 R2:   34 R3:   34 R4:   44 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:   44 PC:    4 AR:   10 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'jmp', 'args': [4]}           	R1:    8 R2:   34 R3:   34 R4:   44 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:   48 PC:    5 AR:    4 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'mul', 'args': [R3, R2, 4]}   	R1:    8 R2:   34 R3:  136 R4:   44 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:   52 PC:    6 AR:    5 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'add', 'args': [R3, R3, R1]}  	R1:    8 R2:   34 R3:  144 R4:   44 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:   56 PC:    7 AR:    6 Z_FLAG: 0 N_FLAG: 0  	{'opcode': 'bge', 'args': [R3, R5, 11]}  	R1:    8 R2:   34 R3:  144 R4:   44 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:   60 PC:    8 AR:    7 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'add', 'args': [R4, R4, R3]}  	R1:    8 R2:   34 R3:  144 R4:  188 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:   64 PC:    9 AR:    8 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'add', 'args': [R1, R0, R2]}  	R1:   34 R2:   34 R3:  144 R4:  188 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:   68 PC:   10 AR:    9 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'add', 'args': [R2, R0, R3]}  	R1:   34 R2:  144 R3:  144 R4:  188 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:   72 PC:    4 AR:   10 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'jmp', 'args': [4]}           	R1:   34 R2:  144 R3:  144 R4:  188 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:   76 PC:    5 AR:    4 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'mul', 'args': [R3, R2, 4]}   	R1:   34 R2:  144 R3:  576 R4:  188 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:   80 PC:    6 AR:    5 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'add', 'args': [R3, R3, R1]}  	R1:   34 R2:  144 R3:  610 R4:  188 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:   84 PC:    7 AR:    6 Z_FLAG: 0 N_FLAG: 0  	{'opcode': 'bge', 'args': [R3, R5, 11]}  	R1:   34 R2:  144 R3:  610 R4:  188 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:   88 PC:    8 AR:    7 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'add', 'args': [R4, R4, R3]}  	R1:   34 R2:  144 R3:  610 R4:  798 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:   92 PC:    9 AR:    8 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'add', 'args': [R1, R0, R2]}  	R1:  144 R2:  144 R3:  610 R4:  798 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:   96 PC:   10 AR:    9 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'add', 'args': [R2, R0, R3]}  	R1:  144 R2:  610 R3:  610 R4:  798 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  100 PC:    4 AR:   10 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'jmp', 'args': [4]}           	R1:  144 R2:  610 R3:  610 R4:  798 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  104 PC:    5 AR:    4 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'mul', 'args': [R3, R2, 4]}   	R1:  144 R2:  610 R3: 2440 R4:  798 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  108 PC:    6 AR:    5 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'add', 'args': [R3, R3, R1]}  	R1:  144 R2:  610 R3: 2584 R4:  798 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  112 PC:    7 AR:    6 Z_FLAG: 0 N_FLAG: 0  	{'opcode': 'bge', 'args': [R3, R5, 11]}  	R1:  144 R2:  610 R3: 2584 R4:  798 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  116 PC:    8 AR:    7 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'add', 'args': [R4, R4, R3]}  	R1:  144 R2:  610 R3: 2584 R4: 3382 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  120 PC:    9 AR:    8 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'add', 'args': [R1, R0, R2]}  	R1:  610 R2:  610 R3: 2584 R4: 3382 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  124 PC:   10 AR:    9 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'add', 'args': [R2, R0, R3]}  	R1:  610 R2: 2584 R3: 2584 R4: 3382 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  128 PC:    4 AR:   10 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'jmp', 'args': [4]}           	R1:  610 R2: 2584 R3: 2584 R4: 3382 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  132 PC:    5 AR:    4 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'mul', 'args': [R3, R2, 4]}   	R1:  610 R2: 2584 R3: 10336 R4: 3382 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  136 PC:    6 AR:    5 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'add', 'args': [R3, R3, R1]}  	R1:  610 R2: 2584 R3: 10946 R4: 3382 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  140 PC:    7 AR:    6 Z_FLAG: 0 N_FLAG: 0  	{'opcode': 'bge', 'args': [R3, R5, 11]}  	R1:  610 R2: 2584 R3: 10946 R4: 3382 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  144 PC:    8 AR:    7 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'add', 'args': [R4, R4, R3]}  	R1:  610 R2: 2584 R3: 10946 R4: 14328 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  148 PC:    9 AR:    8 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'add', 'args': [R1, R0, R2]}  	R1: 2584 R2: 2584 R3: 10946 R4: 14328 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  152 PC:   10 AR:    9 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'add', 'args': [R2, R0, R3]}  	R1: 2584 R2: 10946 R3: 10946 R4: 14328 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  156 PC:    4 AR:   10 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'jmp', 'args': [4]}           	R1: 2584 R2: 10946 R3: 10946 R4: 14328 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  160 PC:    5 AR:    4 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'mul', 'args': [R3, R2, 4]}   	R1: 2584 R2: 10946 R3: 43784 R4: 14328 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  164 PC:    6 AR:    5 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'add', 'args': [R3, R3, R1]}  	R1: 2584 R2: 10946 R3: 46368 R4: 14328 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  168 PC:    7 AR:    6 Z_FLAG: 0 N_FLAG: 0  	{'opcode': 'bge', 'args': [R3, R5, 11]}  	R1: 2584 R2: 10946 R3: 46368 R4: 14328 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  172 PC:    8 AR:    7 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'add', 'args': [R4, R4, R3]}  	R1: 2584 R2: 10946 R3: 46368 R4: 60696 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  176 PC:    9 AR:    8 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'add', 'args': [R1, R0, R2]}  	R1: 10946 R2: 10946 R3: 46368 R4: 60696 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  180 PC:   10 AR:    9 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'add', 'args': [R2, R0, R3]}  	R1: 10946 R2: 46368 R3: 46368 R4: 60696 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  184 PC:    4 AR:   10 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'jmp', 'args': [4]}           	R1: 10946 R2: 46368 R3: 46368 R4: 60696 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  188 PC:    5 AR:    4 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'mul', 'args': [R3, R2, 4]}   	R1: 10946 R2: 46368 R3: 185472 R4: 60696 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  192 PC:    6 AR:    5 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'add', 'args': [R3, R3, R1]}  	R1: 10946 R2: 46368 R3: 196418 R4: 60696 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  196 PC:    7 AR:    6 Z_FLAG: 0 N_FLAG: 0  	{'opcode': 'bge', 'args': [R3, R5, 11]}  	R1: 10946 R2: 46368 R3: 196418 R4: 60696 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  200 PC:    8 AR:    7 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'add', 'args': [R4, R4, R3]}  	R1: 10946 R2: 46368 R3: 196418 R4: 257114 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  204 PC:    9 AR:    8 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'add', 'args': [R1, R0, R2]}  	R1: 46368 R2: 46368 R3: 196418 R4: 257114 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  208 PC:   10 AR:    9 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'add', 'args': [R2, R0, R3]}  	R1: 46368 R2: 196418 R3: 196418 R4: 257114 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  212 PC:    4 AR:   10 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'jmp', 'args': [4]}           	R1: 46368 R2: 196418 R3: 196418 R4: 257114 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  216 PC:    5 AR:    4 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'mul', 'args': [R3, R2, 4]}   	R1: 46368 R2: 196418 R3: 785672 R4: 257114 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  220 PC:    6 AR:    5 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'add', 'args': [R3, R3, R1]}  	R1: 46368 R2: 196418 R3: 832040 R4: 257114 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  224 PC:    7 AR:    6 Z_FLAG: 0 N_FLAG: 0  	{'opcode': 'bge', 'args': [R3, R5, 11]}  	R1: 46368 R2: 196418 R3: 832040 R4: 257114 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  228 PC:    8 AR:    7 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'add', 'args': [R4, R4, R3]}  	R1: 46368 R2: 196418 R3: 832040 R4: 1089154 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  232 PC:    9 AR:    8 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'add', 'args': [R1, R0, R2]}  	R1: 196418 R2: 196418 R3: 832040 R4: 1089154 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  236 PC:   10 AR:    9 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'add', 'args': [R2, R0, R3]}  	R1: 196418 R2: 832040 R3: 832040 R4: 1089154 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  240 PC:    4 AR:   10 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'jmp', 'args': [4]}           	R1: 196418 R2: 832040 R3: 832040 R4: 1089154 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  244 PC:    5 AR:    4 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'mul', 'args': [R3, R2, 4]}   	R1: 196418 R2: 832040 R3: 3328160 R4: 1089154 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  248 PC:    6 AR:    5 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'add', 'args': [R3, R3, R1]}  	R1: 196418 R2: 832040 R3: 3524578 R4: 1089154 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  252 PC:    7 AR:    6 Z_FLAG: 0 N_FLAG: 0  	{'opcode': 'bge', 'args': [R3, R5, 11]}  	R1: 196418 R2: 832040 R3: 3524578 R4: 1089154 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  256 PC:    8 AR:    7 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'add', 'args': [R4, R4, R3]}  	R1: 196418 R2: 832040 R3: 3524578 R4: 4613732 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  260 PC:    9 AR:    8 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'add', 'args': [R1, R0, R2]}  	R1: 832040 R2: 832040 R3: 3524578 R4: 4613732 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  264 PC:   10 AR:    9 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'add', 'args': [R2, R0, R3]}  	R1: 832040 R2: 3524578 R3: 3524578 R4: 4613732 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  268 PC:    4 AR:   10 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'jmp', 'args': [4]}           	R1: 832040 R2: 3524578 R3: 3524578 R4: 4613732 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  272 PC:    5 AR:    4 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'mul', 'args': [R3, R2, 4]}   	R1: 832040 R2: 3524578 R3: 14098312 R4: 4613732 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  276 PC:    6 AR:    5 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'add', 'args': [R3, R3, R1]}  	R1: 832040 R2: 3524578 R3: 14930352 R4: 4613732 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  281 PC:   11 AR:    6 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'bge', 'args': [R3, R5, 11]}  	R1: 832040 R2: 3524578 R3: 14930352 R4: 4613732 R5: 4000000 R6:    0 R7:    0  
+  DEBUG    root:machine.py:283 TICK:  285 PC:   12 AR:   11 Z_FLAG: 0 N_FLAG: 1  	{'opcode': 'out', 'args': [R4, 0]}       	R1: 832040 R2: 3524578 R3: 14930352 R4: 4613732 R5: 4000000 R6:    0 R7:    0  
+  INFO     root:machine.py:291 output buffer: deque([4613732])
+out_stdout: |
+  ============================================================
+out_code: |-
+  {
+    "code": [
+      {
+        "opcode": "add",
+        "args": [
+          "r1",
+          "r0",
+          2
+        ]
+      },
+      {
+        "opcode": "add",
+        "args": [
+          "r2",
+          "r0",
+          8
+        ]
+      },
+      {
+        "opcode": "add",
+        "args": [
+          "r4",
+          "r0",
+          10
+        ]
+      },
+      {
+        "opcode": "add",
+        "args": [
+          "r5",
+          "r0",
+          4000000
+        ]
+      },
+      {
+        "opcode": "mul",
+        "args": [
+          "r3",
+          "r2",
+          4
+        ]
+      },
+      {
+        "opcode": "add",
+        "args": [
+          "r3",
+          "r3",
+          "r1"
+        ]
+      },
+      {
+        "opcode": "bge",
+        "args": [
+          "r3",
+          "r5",
+          11
+        ]
+      },
+      {
+        "opcode": "add",
+        "args": [
+          "r4",
+          "r4",
+          "r3"
+        ]
+      },
+      {
+        "opcode": "add",
+        "args": [
+          "r1",
+          "r0",
+          "r2"
+        ]
+      },
+      {
+        "opcode": "add",
+        "args": [
+          "r2",
+          "r0",
+          "r3"
+        ]
+      },
+      {
+        "opcode": "jmp",
+        "args": [
+          4
+        ]
+      },
+      {
+        "opcode": "out",
+        "args": [
+          "r4",
+          0
+        ]
+      },
+      {
+        "opcode": "hlt",
+        "args": []
+      }
+    ],
+    "start": 0
+  }
