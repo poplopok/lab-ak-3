@@ -257,13 +257,13 @@ class ControlUnit:
             f"Z_FLAG: {self.data_path.alu.z_flag:1} "
             f"N_FLAG: {self.data_path.alu.n_flag:1} "
         )
-        registers_repr = "".join(
-            f"{reg.capitalize()}: {value:4} "
-            for reg, value in self.data_path.registers.items()
-            if reg != Register.R0
-        )
+        # registers_repr = "".join(
+        #     f"{reg.capitalize()}: {value:4} "
+        #     for reg, value in self.data_path.registers.items()
+        #     if reg != Register.R0
+        # )
 
-        return f"{state_repr} \t{self._current_instruction.__repr__():40} \t{registers_repr} "
+        return f"{state_repr} \t{self._current_instruction.repr():40}"
 
 
 def simulation(code: list[Instruction], input_buffer: list[int], start: int):
