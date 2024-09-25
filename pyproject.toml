@@ -16,6 +16,9 @@ pytest-golden = "^0.2.2"
 coverage = "^7.6.1"
 
 
+[tool.poetry.group.dev.dependencies]
+coverage = "^7.6.1"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
